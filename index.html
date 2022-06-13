@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="styles/main.css">
+        <script src="js/utilities.js"></script>
+        <script src="js/dataManage.js"></script>
+        <script src="js/templating.js"></script>
+        <!--Only main.js needs defer so it can find the elements-->
+        <script src="js/main.js" defer></script>
+        <title>Phone Book</title>
+    </head>
+    <body>
+        <!--Header-->
+        <header>
+            <h1>Phone Book</h1>
+        </header>
+        <!--Main-->
+        <main>
+            <section>
+                <div class="box">
+                    <!--box top bar-->
+                    <div class="columns_layout">
+                        <!--Search column-->
+                        <div class="c1">
+                            <input type="text" id="searchField">
+                            <i class="fa fa-search"></i>
+                        </div>
+                        <!--top bar buttons-->
+                        <div>
+                            <button id="createContactBtn" class="btn"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                            <button id="clearDataBtn" class="btn"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                            <button id="saveDataBtn" class="btn"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <!--Contacts section-->
+                    <div id="contactsListView" class="list_view">
+                        <!--Contacts gets filled here-->
+                    </div>
+                    <!--No contacts alert-->
+                    <div id="list_empty" class="center" style="display: none;">
+                        <h2>No contacts found</h2>
+                    </div>
+                    <!--Data saved allert-->
+                    <div id="data_saved_alert" class="center" style="display: none;">
+                        <h2>Your data was saved</h2>
+                    </div>
+                </div>
+            </section>
+            <!--=============Popups=============-->
+            <!--=======Create popup=======-->
+            <div id="createNewContactPopup" class="overlay popup_overlay" style="display: none;">
+                <div class="popup box">
+                    <!--Close popup button-->
+                    <a id="closeCreatePopupBtn" class="close-btn">
+                        <i class="fa fa-close"></i>
+                    </a>
+                    <h1 class="header">Create Contant</h1>
+                    <div class="content">
+                        <div class="columns_layout">
+                            <label>Name*</label>
+                            <span class="c1">
+                                <input id="createNameField" type="text">
+                                <!--Validation message-->
+                                <div class="validation-message"></div>
+                            </span>
+                        </div>
+                        <div class="columns_layout">
+                            <label>Telephone*</label>
+                            <span class="c1">
+                                <input id="createTelephoneField" type="text">
+                                <!--Validation message-->
+                                <div class="validation-message"></div>
+                            </span>
+                        </div>
+                        <div class="columns_layout">
+                            <label>Address</label>
+                            <span class="c1">
+                                <input id="createAddressField" type="text">
+                            </span>
+                        </div>
+                        <div class="columns_layout">
+                            <label>Email</label>
+                            <span class="c1">
+                                <input id="createEmailField" type="text">
+                                <!--Validation message-->
+                                <div class="validation-message"></div>
+                            </span>
+                        </div>
+                        <div class="columns_layout">
+                            <label>Description</label>
+                            <span class="c1">
+                                <textarea id="createDescriptionField"></textarea>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <button id="createContactBtn">create</button>
+                    </div>
+                </div>
+            </div>
+            <!--=======================-->
+            <!--======Edit popup=======-->
+            <div id="editContactPopup" class="overlay popup_overlay" style="display: none;">
+                <div class="popup box">
+                    <!--Close popup button-->
+                    <a id="closeEditPopupBtn" class="close-btn">
+                        <i class="fa fa-close"></i>
+                    </a>
+                    <h1 class="header">Edit Contant</h1>
+                    <div class="content">
+                        <div class="columns_layout">
+                            <label>Name*</label>
+                            <span class="c1">
+                                <input id="editNameField" type="text">
+                                <!--Validation message-->
+                                <div class="validation-message"></div>
+                            </span>
+                        </div>
+                        <div class="columns_layout">
+                            <label>Telephone*</label>
+                            <span class="c1">
+                                <input id="editTelephoneField" type="text">
+                                <!--Validation message-->
+                                <div class="validation-message"></div>
+                            </span>
+                        </div>
+                        <div class="columns_layout">
+                            <label>Address</label>
+                            <span class="c1">
+                                <input id="editAddressField" type="text">
+                            </span>
+                        </div>
+                        <div class="columns_layout">
+                            <label>Email</label>
+                            <span class="c1">
+                                <input id="editEmailField" type="text">
+                                <!--Validation message-->
+                                <div class="validation-message"></div>
+                            </span>
+                        </div>
+                        <div class="columns_layout">
+                            <label>Description</label>
+                            <span class="c1">
+                                <textarea id="editDescriptionField"></textarea>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <button id="updateContactDataBtn">send</button>
+                    </div>
+                </div>
+            </div>
+            <!--=======================-->
+            <!--======Edit popup=======-->
+            <div id="viewContactPopup" class="overlay popup_overlay" style="display: none;">
+                <div class="popup box">
+                    <h1 class="header" id="nameLabel">Name Family</h1>
+                    <div class="content">
+                        <div>
+                            <span>Telephone:</span>
+                            <span id="telephoneLabel">050-43539495</span>
+                        </div>
+                        <div>
+                            <span>Address:</span>
+                            <span id="addressLabel">Test 34</span>
+                        </div>
+                        <div>
+                            <span>Email:</span>
+                            <span id="emailLabel">test@gmail.com</span>
+                        </div>
+                        <div>
+                            <span>Description:</span>
+                            <span id="descriptionLabel">Test retro test efddfg</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--=======================-->
+            <!--================================-->
+        </main>
+        <!--Footer-->
+        <footer class="main-bg">
+            <p>@Copywrite 2021</p>
+        </footer>
+    </body>
+</html>

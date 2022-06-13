@@ -1,0 +1,302 @@
+/*#region setup*/
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 62.5%;
+    /* === variables === */
+    --main-bg-color: #222;
+    --primary-color: white;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.4rem;
+    font-size: 18px;
+    margin: 0px;
+    font-weight: 400;
+    color: white;
+    
+    background: url('../images/phone_book.jpg')  rgba(0, 0, 0, 0.3);
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+header {
+    color: white;
+    background-image: linear-gradient(#000000, #00000000);
+    padding: 2rem;
+    z-index: 99;
+    text-align: center;
+}
+
+/*#endregion setup*/
+
+/*#region box*/
+
+/*Centered box with max width of 760px*/
+.box {
+    max-width: 760px;
+    margin: auto;
+    overflow:auto;
+    text-align: left;
+    box-shadow: 0px 0px 6px;
+    padding: 3rem 4rem;
+    background-color: white;
+    min-height: 320px;
+}
+
+/*Centered box with max width 80% of parent*/
+.box_wide {
+    max-width: 80%;
+    margin: auto;
+    overflow:  auto;
+    text-align: center;
+}
+
+/*#endregion box*/
+
+/*#region section*/
+
+section {
+    color: #333;
+    padding: 40px;
+}
+
+section.main-bg {
+    padding: 40px;
+}
+
+.main-bg {
+    background-color: var(--main-bg-color);
+    color: white;
+}
+
+/*#endregion section*/
+
+/*#region clickables*/
+/*=============clickables section===========*/
+a {
+    color: black;
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+
+    padding: 10px 20px;
+    color: #333;
+    border: none;
+    text-decoration: none;
+
+    margin: 0 0.3rem;
+
+    /*====Disable selection=====*/
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+button.white-button {
+    background-color: white;
+    color: var(--main-bg-color);
+}
+
+a:focus {
+    color: var(--main-bg-color);
+    background-color: white;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: var(--main-bg-color);
+    text-decoration: underline;
+}
+
+button:focus {
+    color: var(--main-bg-color);
+    text-decoration: underline;
+    background: none;
+}
+
+button:hover {
+    color: white;
+    text-decoration: none;
+    background: #666666;
+}
+
+.button-bar {
+    margin: 34px 0px;
+}
+/*===========clickables section end=========*/
+/*#endregion clickables*/
+
+/*#region footer*/
+/*===========footer==========*/
+footer {
+    background-color: white;
+    color: black;
+    text-align: center;
+}
+
+footer .box {
+    text-align: center;
+}
+
+footer p {
+    font-size: 1.3rem;
+}
+/*===========================*/
+/*#endregion footer*/
+
+/*#region popup*/
+/*=========full screen layer==========*/
+.overlay {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+/*overlay black with alpha layer behind popup*/
+.popup_overlay {
+    background-color: #000000aa;
+    position: fixed;
+    z-index: 99;
+}
+/*===================================*/
+
+/*=============popup view============*/
+.popup {
+    width: 80%;
+    color: black;
+    text-align: center;
+    box-shadow: 0px 3px 22px;
+    position: relative;
+}
+
+/*close popup button*/
+.popup .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+}
+
+/*main content view*/
+.popup .content {
+    max-width: 360px;
+    margin: auto;
+}
+
+.popup .content label {
+    min-width: 100px;
+    display: inline-block;
+    text-align: left;
+}
+
+.popup .content input, .popup .content textarea {
+    width: 100%;
+}
+
+.popup .content div {
+    margin: 1rem 0;
+}
+/*===================================*/
+/*#endregion popup*/
+
+/*input validation message*/
+.validation-message {
+    font-size: 1rem;
+    text-align: left;
+    color: red;
+    margin: 0 !important;
+}
+
+input {
+    padding: 0.5rem 0.2rem;
+}
+
+.center {
+    text-align: center;
+}
+
+/*#region list*/
+/*========List========*/
+.list_view {
+    margin: 3rem 0;
+}
+
+.list_item {
+    display: flex;
+    align-items: center;
+    border-top: solid 1px #aaa;
+    border-bottom: solid 1px #aaa;
+    margin: -1px 0;
+}
+
+.list_item:hover {
+    background-color: #33333318;
+}
+
+.list_item p {
+    padding: 0 1rem;
+    flex: 0.5;
+}
+/*===================*/
+/*#endregion list*/
+
+/*sets invalid inputs border color to red*/
+input[type="text"].invalid {
+    border: solid #ff5500 2px;
+}
+
+/*fills the gap*/
+.fill {
+    flex: 1 !important;
+    text-align: right;
+}
+
+/*#region column*/
+/*sorts children as columns*/
+.columns_layout {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+}
+
+/*=====Column grow======*/
+.c1 {
+    flex-grow: 1;
+}
+
+.c2 {
+    flex-grow: 2;
+}
+
+.c3 {
+    flex-grow: 3;
+}
+/*======================*/
+/*#endregion column*/
+
+/*======To keep footer down=====*/
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+/*==============================*/
